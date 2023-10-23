@@ -1,5 +1,6 @@
 import React from 'react'
 import Die from './components/Die'
+import Confetti from 'react-confetti'
 
 export default function App() {
 
@@ -34,6 +35,12 @@ export default function App() {
         return <Die isHeld={x.isHeld} value={x.value} key={x.id} handleClick={() => handleClick(x.id)} />
     })
 
+    function initialize() {
+        //debugger;
+        setTenzies(false)
+        setNumbers(allNewDice())
+
+    }
     function rollDice() {
         const heldNumbers = Array(0)
         var counter = 0;
@@ -59,20 +66,24 @@ export default function App() {
         var held = numbers.every(x => x.isHeld === true)
         var equal = numbers.reduce((a, b) => a + b.value, 0) % 10 === 0
 
-        held && equal && console.log('Won!')
+        if (held && equal) {
+            console.log('Won!')
+            setTenzies(true)
+        }
 
     }, [numbers])
 
     return (
         <main>
             <div className='innerDiv'>
+                {tenzies && <Confetti />}
                 <h1 className="title">Tenzies</h1>
                 <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
                 <div className='dieContainer'>
                     {dies}
                 </div>
                 <div>
-                    <button className="rollButton" onClick={rollDice}>Roll</button>
+                    <button className="rollButton" onClick={!tenzies ? rollDice : initialize}>{tenzies ? 'New Game' : 'Roll'}</button>
                 </div>
             </div>
 
