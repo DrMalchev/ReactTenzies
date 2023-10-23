@@ -26,4 +26,47 @@ main{
   height: 320px;
   background-color: #F5F5F5;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+}
+
+.die{
+  width: 36;
+  height: 36;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 20;
+  font-family: karla;
+  cursor: pointer;
+}
+
+.dieContainer{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr); 
+  grid-template-rows: repeat(2, 1fr);   
+  gap: 10px;                        
+  
+}
+
+.rollButton{
+  cursor: pointer;
+  margin-top: 20px;;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 92px;
+  height: 36px;
+  background-color: blue;
+  color: white;
+  font-size: 16;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 25px;
 }
